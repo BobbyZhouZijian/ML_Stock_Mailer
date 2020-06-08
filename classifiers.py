@@ -167,8 +167,8 @@ class classifier:
         # support vector machine
         message += "The support vector machine model has a mean score {} and variance {} \n".format(svm_mean, svm_std)
         message += "The prediction given by the support vector machine model for " \
-                   "the price trend in the next trading week is: {}" \
-            .format("rising" if svm_prediction == 1 else "falling")
+                   "the price trend in the next trading week is: {}".format("rising"
+                                                                            if svm_prediction == 1 else "falling")
 
         message += "\n\n"
 
@@ -185,4 +185,25 @@ class classifier:
         message += "The prediction given by the random forest model for " \
                    "the price trend in the next trading week is: {}".format(
             "rising" if rf_prediction == 1 else "falling")
+
+        message += "\n\n"
+
+        # overall prediction
+        last_week_prediction = (clf1.fit(X_train, y_train).predict(X_test[-2].reshape(-1, 34))[0]
+                                + clf2.fit(X_train, y_train).predict(X_test[-2].reshape(-1, 34))[0]
+                                + clf3.fit(X_train, y_train).predict(X_test[-2].reshape(-1, 34))[0]) / 3
+        last_week_prediction = round(last_week_prediction)
+
+        last_week_actual = y_test[-1]
+
+        message += "The average predicted trend given by all 3 classifiers for last week is {}".format(
+            "rising" if last_week_prediction == 1 else "falling"
+        )
+
+        message += "The average confidence level for the prediction is {}".format(
+            (logistic_mean + svm_mean + xg_mean + rf_mean) / 4)
+
+        message += "The actual price trend observed for last week's market was: {}".format(
+            "rising" if last_week_actual == 1 else "falling"
+        )
         return message

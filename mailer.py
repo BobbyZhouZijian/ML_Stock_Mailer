@@ -1,5 +1,6 @@
 import smtplib
 import ssl
+import datetime
 
 
 class mailer:
@@ -13,15 +14,19 @@ class mailer:
         smtp_server = smtp_server
         sender_email = sender_email
         receiver_email = receiver_email
-        print(receiver_email)
         password = sender_password
+
+        today = datetime.datetime.today().strftime("%Y-%m-%d")
+
         subject = "ML Weekly Report"
         message = """
 Dear Subscriber:
 
-    The following is the price prediction provided using our ML analysis service.
+The following report is generated on {}.
 
-stock price predicted is for Stock No: {}
+The following is the price prediction provided using our ML analysis service.
+
+Ticker Number for the stock chosen: {}
 
 {}
 
@@ -33,7 +38,7 @@ Zijian's ML generator on behalf of zijian
 
 (Note: The report is automatically generated and only serves as a reference. You SHOULD NOT rely on it for 
 making any trading decisions!)
-""".format(self.ticker, self.message)
+""".format(today, self.ticker, self.message)
 
         content = 'Subject: {}\n\n{}'.format(subject, message)
 
