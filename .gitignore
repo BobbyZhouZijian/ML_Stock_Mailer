@@ -5,5 +5,6 @@ venv/
 # cache
 __pycache__
 
-# macos
+# misc
 .DS_Store
+.idea/
