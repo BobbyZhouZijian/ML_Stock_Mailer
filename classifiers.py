@@ -57,11 +57,11 @@ class classifier:
         rf_std = round(scores.std(), 2)
         rf_prediction = self.predict(clf3)
 
+        # logistic regression
         trend = "predicted trend:" + (
             "<strong>RISING</strong>" if logistic_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
         mean_std = "mean score {}, std {}<br>".format(logistic_mean, logistic_std)
         eval_msg = Evaluator(self.y_test, self.predict_all(clf0)).get_eval_message()
-        # logistic regression
         msg0 = """
         {}
         {}
@@ -111,8 +111,8 @@ class classifier:
 
         last_week_actual = self.y_test[-2]
 
-        message = "The average predicted trend given by all 3 classifiers for last week is {}.".format(
-            "rising" if last_week_prediction == 1 else "falling"
+        message = "The average predicted trend given by all 3 classifiers for last week: {}.".format(
+            "RISING" if last_week_prediction == 1 else "FALLING"
         )
 
         message += '<br>'
@@ -122,7 +122,7 @@ class classifier:
 
         message += "<br>"
 
-        message += "The actual price trend observed for last week's market was: {}".format(
-            "rising" if last_week_actual == 1 else "falling"
+        message += "The actual price trend observed for last week's market: {}".format(
+            "RISING" if last_week_actual == 1 else "FALLING"
         )
         return [msg0, msg1, msg2, msg3, message]
