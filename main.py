@@ -8,6 +8,7 @@ def main():
     message = classifier(ticker).get_report_message()
     mailer(message, ticker).send_email(get("receiver_email"),
                                        get("sender_email"), get("sender_password"), get("smtp_server"))
+    return
 
 
 if __name__ == "__main__":

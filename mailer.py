@@ -1,46 +1,23 @@
 import smtplib
 import ssl
-import datetime
+from email_format import get_format
 
 
 class mailer:
 
-    def __init__(self, message, ticker):
-        self.message = message
+    def __init__(self, messages, ticker):
+        self.messages = messages
         self.ticker = ticker
 
     def send_email(self, receiver_email, sender_email, sender_password, smtp_server):
+        sender_email = sender_email
+
         port = 587  # For starttls
         smtp_server = smtp_server
-        sender_email = sender_email
-        receiver_email = receiver_email
         password = sender_password
-
-        today = datetime.datetime.today().strftime("%Y-%m-%d")
-
-        subject = "ML Weekly Report"
-        message = """
-Dear Subscriber:
-
-The following report is generated on {}.
-
-The following is the price prediction provided using our ML analysis service.
-
-Ticker Number for the stock chosen: {}
-
-{}
-
-Hope you have a good day and make lots of fortune!
-
-
-Regards,
-Zijian's ML generator on behalf of zijian
-
-(Note: The report is automatically generated and only serves as a reference. You SHOULD NOT rely on it for 
-making any trading decisions!)
-""".format(today, self.ticker, self.message)
-
-        content = 'Subject: {}\n\n{}'.format(subject, message)
+        messages = self.messages
+        msg_full = get_format(sender_email, receiver_email, self.ticker, messages[0],
+                              messages[1], messages[2], messages[3], messages[4])
 
         context = ssl.create_default_context()
         with smtplib.SMTP(smtp_server, port) as server:
@@ -48,4 +25,6 @@ making any trading decisions!)
             server.starttls(context=context)
             server.ehlo()  # Can be omitted
             server.login(sender_email, password)
-            server.sendmail(sender_email, receiver_email, content)
+            server.sendmail(sender_email, receiver_email, msg_full)
+
+        return
