@@ -601,7 +601,7 @@ def get_format(sender_email, receiver_email, ticker, msg1, msg2, msg3, msg4, ove
 
                   <div style="Margin-left: 20px;Margin-right: 20px;">
           <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-            <h3 style="Margin-top: 0;Margin-bottom: 12px;font-style: normal;font-weight: normal;color: #281557;font-size: 18px;line-height: 26px;font-family: Avenir,sans-serif;"><strong>XG Boost</strong></h3>
+            <h3 style="Margin-top: 0;Margin-bottom: 12px;font-style: normal;font-weight: normal;color: #281557;font-size: 18px;line-height: 26px;font-family: Avenir,sans-serif;"><strong>AdaBoost</strong></h3>
           </div>
         </div>
 
