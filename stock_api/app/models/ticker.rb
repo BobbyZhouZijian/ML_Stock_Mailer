@@ -1,5 +1,6 @@
 class Ticker < ApplicationRecord
   validate :ticker_conforms_to_format
+  validates :name, uniqueness: true
 
   private
 
