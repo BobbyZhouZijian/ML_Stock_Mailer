@@ -1,14 +1,17 @@
 from classifiers import classifier
 from mailer import mailer
 from settings import get
-import sys
+from api_fetcher import response
 
 
 def main():
-    ticker = "000066" # sys.argv[1]
-    message = classifier(ticker).get_report_message()
-    mailer(message, ticker).send_email(get("receiver_email"),
-                                       get("sender_email"), get("sender_password"), get("smtp_server"))
+    res = response
+
+    for ticker_obj in res:
+        ticker = ticker_obj['name']
+        message = classifier(ticker).get_report_message()
+        mailer(message, ticker).send_email(get("receiver_email"),
+                                           get("sender_email"), get("sender_password"), get("smtp_server"))
     return
 
 

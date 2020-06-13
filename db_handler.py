@@ -1,9 +1,6 @@
 import psycopg2
-import sys, os
-import numpy as np
 import pandas as pd
 import db_credentials as creds
-import pandas.io.sql as psql
 
 conn_string = "host=" + creds.PGHOST + " port=" + "5432" + " dbname=" + creds.PGDATABASE + " user=" + creds.PGUSER \
               + " password=" + creds.PGPASSWORD
@@ -14,8 +11,9 @@ print("Connected!")
 cursor = conn.cursor()
 
 
-def load_data(table):
-    sql_command = "SELECT * FROM {}".format(str(table))
+def load_data(table, uid):
+    sql_command = "SELECT * FROM ({table} inner join users jt on {table}.user_id = users.id " \
+                  "where jt.uid = {uid}".format(table=str(table), uid=str(uid))
     print(sql_command)
 
     # Load the data
@@ -27,7 +25,6 @@ def load_data(table):
 
 
 def create_table():
-
     try:
         sql_command = (
             """
@@ -52,4 +49,5 @@ def create_table():
             conn.close()
 
 
-create_table()
+tickers = load_data("tickers", "zhou_zijian@u.nus.edu")
+print(tickers)
