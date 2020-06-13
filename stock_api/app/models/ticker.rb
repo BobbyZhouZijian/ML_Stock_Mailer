@@ -1,4 +1,6 @@
 class Ticker < ApplicationRecord
+
+  belongs_to :user
   validate :ticker_conforms_to_format
   validates :name, uniqueness: true
 

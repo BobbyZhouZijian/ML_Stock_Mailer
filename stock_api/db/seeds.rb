@@ -6,4 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Ticker.create([{name: '000066'}, {name: '600729'}, {name: '300042'}])
+# create user
+user = User.create!({name: 'zijian', email: 'zhou_zijian@u.nus.edu', password: 'password'})
+id = user.id
+Ticker.create([{name: '000066', user_id: id}, {name: '600729', user_id: id}, {name: '300042', user_id: id}])
