@@ -88,7 +88,7 @@ class featureGenerator:
 
         df.dropna(inplace=True)
 
-        df['trend'] = df['open'] - df['open'].shift(1)
+        df['trend'] = df['close'] - df['close'].shift(1)
         df['trend'] = df['trend'].shift(-1)
         df.fillna(0, inplace=True)
 
