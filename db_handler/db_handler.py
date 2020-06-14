@@ -1,6 +1,6 @@
 import psycopg2
 import pandas as pd
-import db_credentials as creds
+from db_handler.db_handler import db_credentials as creds
 
 conn_string = "host=" + creds.PGHOST + " port=" + "5432" + " dbname=" + creds.PGDATABASE + " user=" + creds.PGUSER \
               + " password=" + creds.PGPASSWORD

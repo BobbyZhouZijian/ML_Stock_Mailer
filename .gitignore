@@ -3,7 +3,7 @@
 venv/
 
 # credential files
-db_credentials.py
+db_handler/db_credentials.py
 
 # cache
 __pycache__

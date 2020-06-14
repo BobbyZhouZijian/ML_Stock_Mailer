@@ -5,5 +5,6 @@ pip3 install -r requirements.txt
 if [ $? -eq 0 ]
 then
   echo dependencies installed, running python project...
-  python main.py
+else
+  echo installation failed. quitting...
 fi
