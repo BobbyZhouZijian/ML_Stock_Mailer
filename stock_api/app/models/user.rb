@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  def admin?
+    uid == 'zhou_zijian@u.nus.edu'
+  end
 end
