@@ -49,6 +49,12 @@ class featureGenerator:
             df[name] = ind_ROC.roc()
             return
 
+        def add_WCP(i):
+            ind_WCP = ta.trend.EMAIndicator(close=df['wclose'], n=i)
+            name = 'wcp_%s' % i
+            df[name] = ind_WCP.ema_indicator()
+            return
+
         def add_MACD(r, j):
             ind_MACD = ta.trend.MACD(close=df['close'], n_fast=r, n_slow=j)
             name = 'macd_%s_%s' % (r, j)
@@ -76,6 +82,7 @@ class featureGenerator:
         for i in [12, 13, 14, 15]:
             add_ROC(i)
 
+        add_WCP(15)
         add_MACD(15, 30)
         add_CCI(15)
 
@@ -85,8 +92,6 @@ class featureGenerator:
             df.at[i, 'lo_avg_2'] = (df.at[i - 1, 'low'] + df.at[i, 'low']) / 2
             df.at[i, 'hilo_avg_2'] = (df.at[i, 'hi_avg_2'] + df.at[i, 'lo_avg_2']) / 2
             df.at[i, 'hilo_avg'] = (df.at[i, 'high'] + df.at[i, 'low']) / 2
-
-        df.dropna(inplace=True)
 
         df['trend'] = df['close'] - df['close'].shift(1)
         df['trend'] = df['trend'].shift(-1)
