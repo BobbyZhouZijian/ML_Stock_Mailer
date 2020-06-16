@@ -95,7 +95,8 @@ class featureGenerator:
 
         df['trend'] = df['close'] - df['close'].shift(1)
         df['trend'] = df['trend'].shift(-1)
-        df.fillna(0, inplace=True)
+        df = df.replace([np.inf, -np.inf], np.nan)
+        df.fillna(df.mean(), inplace=True)
 
         # generate y
         df['trend'][df['trend'] >= 0] = 1

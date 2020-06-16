@@ -27,7 +27,7 @@ class stockData:
         rs = bs.query_history_k_data_plus(ticker,
                                           "open,high,close,low,volume",
                                           start_date='2013-07-01', end_date=date_today,
-                                          frequency="w", adjustflag="3")
+                                          frequency="d", adjustflag="3")
         print('query_history_k_data_plus respond error_code:' + rs.error_code)
         print('query_history_k_data_plus respond  error_msg:' + rs.error_msg)
 
