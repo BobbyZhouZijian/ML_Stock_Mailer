@@ -3,7 +3,7 @@ def get_format(sender_email, receiver_email, ticker, msg1, msg2, msg3, msg4, ove
                  'To: Receiver Name <{}>\n' \
                  'MIME-Version: 1.0\n' \
                  'Content-type: text/html\n' \
-                 'Subject: Machine Learning Weekly Report\n'.format(sender_email, receiver_email)
+                 'Subject: Machine Learning daily Report\n'.format(sender_email, receiver_email)
     msg_content = """"\
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--[if IE]><html xmlns="http://www.w3.org/1999/xhtml" class="ie"><![endif]--><!--[if !IE]><!--><html style="margin: 0;padding: 0;" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]--><head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -487,7 +487,7 @@ def get_format(sender_email, receiver_email, ticker, msg1, msg2, msg3, msg4, ove
 
                   <div style="Margin-left: 20px;Margin-right: 20px;">
           <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-            <h1 class="size-64" style="mso-text-raise: 25px;Margin-top: 0;Margin-bottom: 20px;font-style: normal;font-weight: normal;color: #000;font-size: 44px;line-height: 50px;font-family: avenir,sans-serif;text-align: center;" lang="x-size-64"><span class="font-avenir"><font color="#ffffff"><strong>Machine Learning Weekly Review</strong></font></span></h1>
+            <h1 class="size-64" style="mso-text-raise: 25px;Margin-top: 0;Margin-bottom: 20px;font-style: normal;font-weight: normal;color: #000;font-size: 44px;line-height: 50px;font-family: avenir,sans-serif;text-align: center;" lang="x-size-64"><span class="font-avenir"><font color="#ffffff"><strong>Machine Learning Daily Review</strong></font></span></h1>
           </div>
         </div>
 
@@ -648,7 +648,7 @@ def get_format(sender_email, receiver_email, ticker, msg1, msg2, msg3, msg4, ove
           <div style="mso-line-height-rule: exactly;line-height: 50px;font-size: 50px;">&nbsp;</div>
           <div style="Margin-left: 20px;Margin-right: 20px;">
             <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-              <h2 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #e31212;font-size: 26px;line-height: 34px;font-family: Avenir,sans-serif;text-align: center;"><strong>Review of Last Week</strong></h2>
+              <h2 style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #e31212;font-size: 26px;line-height: 34px;font-family: Avenir,sans-serif;text-align: center;"><strong>Review of Last Trading Day</strong></h2>
                 <div style="font-size: 12px;line-height: 19px;Margin-top: 18px;">
                  <p text-align: center;>{overall_msg}</p>
                 </div>
@@ -667,7 +667,7 @@ def get_format(sender_email, receiver_email, ticker, msg1, msg2, msg3, msg4, ove
                       <div>Zijian's Machine Learning Services</div>
                     </div>
                     <div style="font-size: 12px;line-height: 19px;Margin-top: 18px;">
-                      <div>you are receiving this email because you have subscribed to Zijian's Machine Learning Weekly Report services. To unsubscribe, click on the button below</div>
+                      <div>you are receiving this email because you have subscribed to Zijian's Machine Learning Daily Report services. To unsubscribe, click on the button below</div>
                     </div>
                     <!--[if mso]>&nbsp;<![endif]-->
                   </div>

@@ -69,7 +69,8 @@ class classifier:
         """.format(trend, mean_std, eval_msg)
 
         # support vector machine
-        trend = "predicted trend:" + ("<strong>RISING</strong>" if svm_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
+        trend = "predicted trend:" + (
+            "<strong>RISING</strong>" if svm_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
         mean_std = "mean score {}, std {}<br>".format(svm_mean, svm_std)
         eval_msg = Evaluator(self.y_test, self.predict_all(clf1)).get_eval_message()
         # svm
@@ -80,7 +81,8 @@ class classifier:
         """.format(trend, mean_std, eval_msg)
 
         # AdaBoost
-        trend = "predicted trend:" + ("<strong>RISING</strong>" if ada_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
+        trend = "predicted trend:" + (
+            "<strong>RISING</strong>" if ada_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
         mean_std = "mean score {}, std {}<br>".format(ada_mean, ada_std)
         eval_msg = Evaluator(self.y_test, self.predict_all(clf2)).get_eval_message()
         # svm
@@ -91,7 +93,8 @@ class classifier:
         """.format(trend, mean_std, eval_msg)
 
         # random forest
-        trend = "predicted trend:" + ("<strong>RISING</strong>" if rf_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
+        trend = "predicted trend:" + (
+            "<strong>RISING</strong>" if rf_prediction == 1 else "<strong>FALLING</strong>") + "<br>"
         mean_std = "mean score {}, std {}<br>".format(rf_mean, rf_std)
         eval_msg = Evaluator(self.y_test, self.predict_all(clf3)).get_eval_message()
         # svm
@@ -103,16 +106,16 @@ class classifier:
 
         # overall prediction
 
-        last_week_prediction = (self.predict(clf0, offset=1)
-                                + self.predict(clf1, 1)
-                                + self.predict(clf2, 1)
-                                + self.predict(clf3, 1)) / 4
-        last_week_prediction = round(last_week_prediction)
+        last_prediction = (self.predict(clf0, offset=1)
+                           + self.predict(clf1, 1)
+                           + self.predict(clf2, 1)
+                           + self.predict(clf3, 1)) / 4
+        last_prediction = round(last_prediction)
 
         last_week_actual = self.y_test[-2]
 
-        message = "The average predicted trend given by all 3 classifiers for last week: {}.".format(
-            "RISING" if last_week_prediction == 1 else "FALLING"
+        message = "The average predicted trend given by all 4 classifiers for last trading day: {}.".format(
+            "RISING" if last_prediction == 1 else "FALLING"
         )
 
         message += '<br>'
@@ -127,6 +130,6 @@ class classifier:
         )
 
         message += "The prediction for last week is <strong>{}<strong>".format(
-            "CORRECT" if last_week_actual == last_week_prediction else "WRONG"
+            "CORRECT" if last_week_actual == last_prediction else "WRONG"
         )
         return [msg0, msg1, msg2, msg3, message]
