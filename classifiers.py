@@ -12,8 +12,8 @@ from evaluator import Evaluator
 
 class classifier:
 
-    def __init__(self, ticker):
-        [self.df, self.y] = featureGenerator(ticker).get_features()
+    def __init__(self, df):
+        [self.df, self.y] = featureGenerator(df).get_features()
         # train test split
         self.X_train, self.X_test, self.y_train, self.y_test = \
             train_test_split(self.df, self.y, test_size=0.3, shuffle=False)
@@ -28,6 +28,17 @@ class classifier:
 
     def predict_all(self, clf):
         return clf.predict(self.X_test)
+
+    def get_max_auc(self):
+        clf0, scores = self.train(LogisticRegression())
+        clf1, scores = self.train(svm.SVC(kernel='linear', C=1))
+        clf2, scores = self.train(AdaBoostClassifier(random_state=50, learning_rate=1))
+        clf3, scores = self.train(RandomForestClassifier(n_estimators=20, max_depth=2, random_state=0))
+        auc0 = Evaluator(self.y_test, self.predict_all(clf0)).get_auc()
+        auc1 = Evaluator(self.y_test, self.predict_all(clf1)).get_auc()
+        auc2 = Evaluator(self.y_test, self.predict_all(clf2)).get_auc()
+        auc3 = Evaluator(self.y_test, self.predict_all(clf3)).get_auc()
+        return max(auc0, auc1, auc2, auc3)
 
     def get_report_message(self):
         df = self.df
@@ -52,7 +63,7 @@ class classifier:
         ada_prediction = self.predict(clf2)
 
         # random forest
-        clf3, scores = self.train(RandomForestClassifier(max_depth=4, random_state=0))
+        clf3, scores = self.train(RandomForestClassifier(n_estimators=20, max_depth=2, random_state=0))
         rf_mean = round(scores.mean(), 2)
         rf_std = round(scores.std(), 2)
         rf_prediction = self.predict(clf3)

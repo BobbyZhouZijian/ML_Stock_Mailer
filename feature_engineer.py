@@ -1,4 +1,3 @@
-from dataframe import stockData
 from sklearn.impute import SimpleImputer
 import ta
 from scipy.stats import linregress
@@ -7,9 +6,9 @@ from sklearn.preprocessing import StandardScaler
 
 
 class featureGenerator:
-    def __init__(self, ticker):
+    def __init__(self, df):
         # get data frame
-        self.df = stockData(ticker).get_stock_price()
+        self.df = df
 
     def get_features(self):
         # feature engineering
