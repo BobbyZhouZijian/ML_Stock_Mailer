@@ -5,13 +5,12 @@ import datetime
 
 class stockData:
     def __init__(self):
-        lg = bs.login(user_id="anonymous", password="123456")
-        print('login respond error_code:' + lg.error_code)
-        print('login respond  error_msg:' + lg.error_msg)
-
         self.today = datetime.datetime.today().strftime("%Y-%m-%d")
 
     def get_all_tickers(self):
+        lg = bs.login(user_id="anonymous", password="123456")
+        print('login respond error_code:' + lg.error_code)
+        print('login respond  error_msg:' + lg.error_msg)
         rs = bs.query_all_stock(day=self.today)
         # print results
         data_list = []
@@ -24,7 +23,9 @@ class stockData:
         return df['code'].values
 
     def get_stock_price(self, ticker):
-
+        lg = bs.login(user_id="anonymous", password="123456")
+        print('login respond error_code:' + lg.error_code)
+        print('login respond  error_msg:' + lg.error_msg)
         if ticker[0] == '6':
             ticker = 'sh.' + ticker
         else:
