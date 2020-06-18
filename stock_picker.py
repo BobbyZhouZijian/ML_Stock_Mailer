@@ -14,7 +14,7 @@ def main():
             cur_classifier = classifier(df)
             max_auc = cur_classifier.get_max_auc()
             if max_auc >= 0.7:
-                f.write(ticker)
+                f.write('ticker: ' + ticker + ', max_auc: ' + str(max_auc))
 
     f.close()
     return
