@@ -15,12 +15,6 @@ class featureGenerator:
         # feature engineering
         df = self.df.astype(float)
 
-        for i in range(len(df) - 1):
-            if df.at[i + 1, 'close'] > df.at[i, 'close']:
-                df.at[i, 'delta'] = 1
-            else:
-                df.at[i, 'delta'] = 0
-
         # technical analysis features
         def add_slope(r):
             for j in range(r - 1, len(df)):
