@@ -11,7 +11,7 @@ class stockData:
         lg = bs.login(user_id="anonymous", password="123456")
         print('login respond error_code:' + lg.error_code)
         print('login respond  error_msg:' + lg.error_msg)
-        rs = bs.query_all_stock(day=self.today)
+        rs = bs.query_all_stock(day='2020-06-18')
         # print results
         data_list = []
         while (rs.error_code == '0') & rs.next():
